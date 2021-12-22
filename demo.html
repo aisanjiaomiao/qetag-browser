@@ -1,0 +1,15 @@
+<!-- https://github.com/emn178/js-sha1 -->
+<script src="./js-sha1.js"></script>
+<script src="./qetag-browser.js"></script>
+<input id="f" type="file" />
+<div id="etagDemo"></div>
+<script>
+  document.getElementById("f").onchange = function (event) {
+    var fls = event.target.files;
+    if (!fls.length) return;
+    document.getElementById("etagDemo").innerHTML ="处理中...."
+    var reader = new FileReader();
+    reader.onload = (e) => document.getElementById("etagDemo").innerHTML = qEtag.get(e.target.result);
+    reader.readAsArrayBuffer(fls[0]);
+  };
+</script>
